@@ -178,10 +178,10 @@ const Speak: React.FC = () => {
                     </svg>
                   </div>
                   <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-4" style={{fontFamily: 'Comic Sans MS, cursive'}}>
-                    🔐 需要登录才能使用
+                    🔐 联系管理员授权使用
                   </h3>
                   <p className="text-gray-600 dark:text-gray-300 mb-6" style={{fontFamily: 'Comic Sans MS, cursive'}}>
-                    请先登录以使用AI智能体服务
+                    扫码添加微信获取智能体使用权限
                   </p>
                   <button
                     onClick={() => setIsLoginModalOpen(true)}

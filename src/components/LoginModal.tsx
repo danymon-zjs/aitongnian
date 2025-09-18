@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import ContactAdminModal from './ContactAdminModal';
 
 interface LoginModalProps {
   isOpen: boolean;
@@ -12,6 +13,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onLogin }) => 
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [showContactModal, setShowContactModal] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -45,7 +47,12 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onLogin }) => 
       setUsername('');
       setPassword('');
       setError('');
+      setShowContactModal(false);
     }
+  };
+
+  const handleContactAdmin = () => {
+    setShowContactModal(true);
   };
 
   return (
@@ -203,20 +210,45 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onLogin }) => 
               </motion.button>
             </form>
 
-            {/* 底部提示 */}
-            <div className="mt-6">
+            {/* 底部提示和联系管理员 */}
+            <div className="mt-6 space-y-4">
+              {/* 联系管理员按钮 */}
+              <motion.button
+                onClick={handleContactAdmin}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full py-3 px-6 bg-gradient-to-r from-green-500 to-green-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all flex items-center justify-center"
+                style={{fontFamily: 'Comic Sans MS, cursive'}}
+              >
+                <div className="flex items-center">
+                  <div className="w-5 h-5 mr-2">
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c1.19 0 2.34-.21 3.41-.6.36-.12.75-.03 1.02.24.27.27.36.66.24 1.02-.39 1.07-.6 2.22-.6 3.41 0 5.52 4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                    </svg>
+                  </div>
+                  联系管理员授权使用
+                </div>
+              </motion.button>
+
+              {/* 提示信息 */}
               <div className="bg-purple-100 rounded-xl p-3 flex items-center justify-center">
                 <div className="w-4 h-4 bg-purple-600 rounded-full flex items-center justify-center mr-2">
                   <span className="text-white text-xs font-bold">i</span>
                 </div>
                 <span className="text-purple-700 text-sm" style={{fontFamily: 'Comic Sans MS, cursive'}}>
-                  仅限已授权用户使用
+                  已有账号可直接登录
                 </span>
               </div>
             </div>
           </motion.div>
         </motion.div>
       )}
+      
+      {/* 联系管理员弹窗 */}
+      <ContactAdminModal 
+        isOpen={showContactModal} 
+        onClose={() => setShowContactModal(false)} 
+      />
     </AnimatePresence>
   );
 };
