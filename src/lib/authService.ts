@@ -92,11 +92,11 @@ class AuthService {
   private validateCredentials(credentials: LoginCredentials): boolean {
     // 模拟的授权用户列表
     const authorizedUsers = [
-      { username: 'admin', password: 'admin123' },
-      { username: 'user1', password: '123456' },
-      { username: 'test', password: 'test123' },
-      { username: 'demo', password: 'demo123' },
-      { username: '18625292512', password: 'zjs589212' }
+      { username: '*', password: '*' },
+      { username: '*', password: '*' },
+      { username: '*', password: '*' },
+      { username: '*', password: '*' },
+      { username: '*', password: '*' }
     ];
 
     return authorizedUsers.some(
