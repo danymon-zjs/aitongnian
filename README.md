@@ -7,8 +7,8 @@
 - **项目类型**: React + TypeScript + Vite 现代化Web应用
 - **技术栈**: React 18, TypeScript, Vite 6, Tailwind CSS, Framer Motion
 - **部署环境**: CentOS 7.9, Node.js 18+, PM2进程管理
-- **版本**: v0.0.1
-- **最后更新**: 2024年12月
+- **版本**: v1.0.1
+- **最后更新**: 2025年10月
 
 ### 项目特色
 - 🎨 **AI智能体集成**: 集成Coze AI平台，提供4个专业AI功能模块

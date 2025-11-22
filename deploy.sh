@@ -41,8 +41,10 @@ fi
 echo "📦 安装项目依赖..."
 npm install
 
-# 构建项目
-echo "🔨 构建项目..."
+# 构建项目（使用生产环境，自动启用JWT鉴权）
+echo "🔨 构建项目（生产环境 - 使用JWT鉴权）..."
+export NODE_ENV=production
+export VITE_APP_ENV=production
 npm run build
 
 # 检查构建结果
@@ -173,6 +175,9 @@ echo "🔄 更新项目..."
 cd /var/www/aitongnian
 git pull origin main
 npm install
+# 使用生产环境构建（自动启用JWT鉴权）
+export NODE_ENV=production
+export VITE_APP_ENV=production
 npm run build
 pm2 restart aitongnian
 nginx -s reload

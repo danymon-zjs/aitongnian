@@ -1,5 +1,6 @@
 import { toast } from '@/components/Toast';
 import { COZE_PAT_TOKENS } from '@/config/cozeApps';
+import { getCozeToken } from './cozeAuthManager';
 
 // 声明全局Coze Web SDK类型 - 统一使用AppWebSDK
 declare global {
@@ -29,8 +30,10 @@ declare global {
 
 /**
  * 获取PAT令牌（个人访问令牌）
+ * 注意：此函数已弃用，项目现在仅使用JWT鉴权
  * @param moduleType 模块类型
  * @returns string PAT令牌
+ * @deprecated 项目现在仅使用JWT鉴权，此函数保留用于兼容性
  */
 export const getPATToken = (moduleType: 'newspaper' | 'camera' | 'speak' | 'voice'): string => {
   const tokenMap = {
@@ -166,14 +169,15 @@ export const initCozeSDKCorrect = async (appId: string, container: HTMLElement, 
       throw new Error(`请先配置${moduleType}模块的应用ID`);
     }
 
-    // 获取PAT令牌
-    const patToken = getPATToken(moduleType);
+    // 获取访问令牌（仅使用JWT）
+    const token = await getCozeToken(moduleType);
     
     console.log(`正在初始化${moduleType}应用:`, {
       appId,
       containerId,
       moduleType,
-      patToken: patToken.substring(0, 20) + '...' // 只显示token的前20个字符
+      tokenType: 'JWT', // 仅使用JWT鉴权
+      token: token.substring(0, 20) + '...' // 只显示token的前20个字符
     });
     
     // 动态加载Coze Web SDK
@@ -212,7 +216,7 @@ export const initCozeSDKCorrect = async (appId: string, container: HTMLElement, 
     
     // AppWebSDK的配置格式（统一配置）
     const sdkConfig = {
-      token: patToken,
+      token: token, // 使用getCozeToken获取的JWT令牌
       appId: appId,
       container: container,
       userInfo: {

@@ -1,5 +1,20 @@
 # 哎童年科技 - 魔法童画AI绘画平台 CentOS 7.9 一键部署指南 v2.0
 
+## 🔐 鉴权方式说明
+
+**重要**：本项目支持两种鉴权方式，会根据 `NODE_ENV` 环境变量自动选择：
+
+- **PAT（Personal Access Token）**：开发环境使用，需要手动更新PAT令牌
+- **JWT（OAuth JWT）**：生产环境使用，自动生成和刷新，无需担心过期
+
+**默认部署配置**：本部署脚本会自动设置 `NODE_ENV=production`，因此**默认使用JWT鉴权**。
+
+✅ **JWT配置已内置在代码中**，无需修改代码，只需确保构建时设置 `NODE_ENV=production`。
+
+📖 **详细说明**：请参考 `JWT_DEPLOYMENT_GUIDE.md` 了解JWT鉴权的详细配置和验证方法。
+
+---
+
 ## 📋 部署概述
 
 ### 部署环境要求
@@ -379,10 +394,14 @@ deploy_app() {
     
     # 安装依赖
     log_info "安装依赖..."
-    pnpm install --production
+    pnpm install --production=false
     
-    # 构建应用
-    log_info "构建应用..."
+    # 设置生产环境变量（关键：确保使用JWT鉴权而不是PAT）
+    export NODE_ENV=production
+    export VITE_APP_ENV=production
+    
+    # 构建应用（生产环境会自动使用JWT鉴权）
+    log_info "构建应用（生产环境 - 使用JWT鉴权）..."
     pnpm run build
     
     # 创建简单的Node.js服务器
@@ -718,10 +737,14 @@ deploy_app() {
     
     # 安装依赖
     log_info "安装依赖..."
-    pnpm install --production
+    pnpm install --production=false
     
-    # 构建应用
-    log_info "构建应用..."
+    # 设置生产环境变量（关键：确保使用JWT鉴权而不是PAT）
+    export NODE_ENV=production
+    export VITE_APP_ENV=production
+    
+    # 构建应用（生产环境会自动使用JWT鉴权）
+    log_info "构建应用（生产环境 - 使用JWT鉴权）..."
     pnpm run build
     
     # 创建简单的Node.js服务器

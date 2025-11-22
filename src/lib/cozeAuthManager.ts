@@ -1,36 +1,36 @@
 import { toast } from '@/components/Toast';
 import { CURRENT_ENV, ENVIRONMENT, getCurrentEnvConfig } from '../config/environment';
-import { getPATToken } from './cozeSDKCorrect';
 import { getProductionOAuthToken } from './cozeProductionService';
 
 /**
  * Coze认证管理器
- * 统一管理PAT和OAuth JWT认证方式
+ * 仅使用OAuth JWT认证方式（基于coze_oauth_python_jwt目录配置）
  */
 
 export type ModuleType = 'newspaper' | 'camera' | 'speak' | 'voice';
 
 /**
  * 获取Coze访问令牌
- * 根据当前环境自动选择认证方式
+ * 仅使用JWT鉴权（根据coze_oauth_python_jwt目录配置）
  * @param moduleType 模块类型
  * @returns Promise<string> 访问令牌
  */
 export const getCozeToken = async (moduleType: ModuleType): Promise<string> => {
   try {
-    if (CURRENT_ENV === ENVIRONMENT.DEVELOPMENT) {
-      // 开发环境使用PAT
-      console.log(`[${getCurrentEnvConfig().name}] 使用PAT令牌认证 (${moduleType})`);
-      return getPATToken(moduleType);
-    } else {
-      // 生产环境使用OAuth JWT
-      console.log(`[${getCurrentEnvConfig().name}] 使用OAuth JWT令牌认证 (${moduleType})`);
-      const tokenResponse = await getProductionOAuthToken(moduleType);
-      return tokenResponse.access_token;
-    }
+    // 始终使用OAuth JWT鉴权
+    console.log(`[JWT鉴权] 使用OAuth JWT令牌认证 (${moduleType})`);
+    const tokenResponse = await getProductionOAuthToken(moduleType);
+    return tokenResponse.access_token;
   } catch (error) {
     console.error(`获取Coze令牌失败 (${moduleType}):`, error);
-    toast.error(`认证失败: ${error instanceof Error ? error.message : '未知错误'}`);
+    const errorMessage = error instanceof Error ? error.message : '未知错误';
+    
+    // 提供更详细的错误信息
+    if (errorMessage.includes('kid') || errorMessage.includes('401')) {
+      toast.error(`JWT配置错误: ${errorMessage}。请检查JWT配置中的keyId是否在Coze平台正确注册。`);
+    } else {
+      toast.error(`认证失败: ${errorMessage}`);
+    }
     throw error;
   }
 };
@@ -58,18 +58,9 @@ export const getAuthInfo = () => {
  */
 export const checkAuthConfig = (moduleType: ModuleType): { valid: boolean; message: string } => {
   try {
-    if (CURRENT_ENV === ENVIRONMENT.DEVELOPMENT) {
-      // 检查PAT配置
-      const patToken = getPATToken(moduleType);
-      if (patToken.includes('YOUR_') || patToken === 'YOUR_PAT_TOKEN') {
-        return { valid: false, message: `请先配置${moduleType}模块的PAT令牌` };
-      }
-      return { valid: true, message: 'PAT令牌配置正确' };
-    } else {
-      // 检查OAuth JWT配置
-      // 这里可以添加JWT配置检查逻辑
-      return { valid: true, message: 'OAuth JWT配置正确' };
-    }
+    // 仅检查OAuth JWT配置
+    // JWT配置已内置在cozeProductionService.ts中
+    return { valid: true, message: 'OAuth JWT配置正确' };
   } catch (error) {
     return { 
       valid: false, 

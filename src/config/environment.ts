@@ -14,13 +14,12 @@ export type EnvironmentType = typeof ENVIRONMENT[keyof typeof ENVIRONMENT];
 
 /**
  * 获取当前环境类型
+ * 仅使用JWT鉴权（根据coze_oauth_python_jwt目录配置）
  */
 export const getCurrentEnvironment = (): EnvironmentType => {
-  // 根据NODE_ENV判断环境
-  if (process.env.NODE_ENV === 'production') {
-    return ENVIRONMENT.PRODUCTION;
-  }
-  return ENVIRONMENT.DEVELOPMENT;
+  // 始终使用JWT鉴权
+  console.log('✅ 使用JWT鉴权（仅JWT模式）');
+  return ENVIRONMENT.PRODUCTION;
 };
 
 /**
@@ -34,14 +33,14 @@ export const CURRENT_ENV = getCurrentEnvironment();
 export const ENV_CONFIG = {
   [ENVIRONMENT.DEVELOPMENT]: {
     name: '开发环境',
-    description: '使用PAT令牌进行认证',
+    description: '使用PAT令牌进行认证（已禁用）',
     authMethod: 'PAT',
     color: 'blue',
     icon: '🔧'
   },
   [ENVIRONMENT.PRODUCTION]: {
-    name: '生产环境',
-    description: '使用OAuth JWT进行认证',
+    name: 'JWT鉴权',
+    description: '使用OAuth JWT进行认证（基于coze_oauth_python_jwt配置）',
     authMethod: 'OAuth JWT',
     color: 'green',
     icon: '🚀'

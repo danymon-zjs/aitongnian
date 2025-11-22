@@ -11,134 +11,139 @@ const PRODUCTION_CONFIG = {
   aud: 'api.coze.cn'
 };
 
-// 经过Node.js测试验证的OAuth JWT配置
+// 基于coze_oauth_python_jwt目录配置的OAuth JWT配置
+// 配置来源：
+// - coze_oauth_python_jwt-shou -> newspaper (手抄报社)
+// - coze_oauth_python_jwt-tong -> speak (童言生画)
+// - coze_oauth_python_jwt-chaung -> camera (创想空间)
+// - coze_oauth_python_jwt-AI -> voice (语音互动)
 const OAUTH_JWT_CONFIG = {
   newspaper: {
-    appId: '1128088461414',
-    keyId: 'y-XendbREzonHcoxrxZSzsOtZbhebQZdJ99VL8SXzd0',
+    appId: '1102688282029', // coze_oauth_python_jwt-shou
+    keyId: 'wL0sIk83YFu5kAfSoCwhurNYFl3m1BJG_hjZREvgDV4',
     privateKey: `-----BEGIN PRIVATE KEY-----
-MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCHmC8pF0WKVwBo
-ZWjkMcQmyX2iC9v0WvE55vC5/6GZ0zN5t6+QRzm9TcSOr5FGE7PA/fTVE+e8qeHG
-7OTsgoM0cfDqg795wGeL4g6vdTIna4xn/sRLeDNwFfADcjlFHkSyOAr/iGSlmqH3
-LV2sBWsJSmjREno3+dcFPps2hP2bmw+LYl5r9lmcT2ZO1GBfByNR9Cusn+GduCjD
-3UR87oXbKHNLzby0fNqbkohJXLjaeZgmdgDhgTV+awPO/D+2l1H0Qez5iNiHNXzZ
-IwgOY5rcyfmN73/X1SSB+j8qQ3ZSdId4Pjx9dJzCazCGYdbX04hzyDChA47PvF1b
-emjYuQI7AgMBAAECggEAEiM+x7nXsQIjSVOrXL71dJTGS+tXMFAL7YlhURgLR1bT
-j2gNQXjtlc91x/pfLecLx/iQjAIeIQP+cgwVMTfiEh1dsxkNf11H3JPQEBNWsqQ1
-w2F2Y3wAMXGVyfg5BfBfExHhEr5tbCOLn9M/MPgGkdcUv0a/94Xhh8+QlpHilLJO
-4TlrYOIR6rlbLvYCS5V3va+ntuUPiIyWh8LGXm+BpLgKY5MlaTrOGYslHiZAtgN5
-svYLwVJtOuRxvE4WNkJrHVNG1dyd4EQCKqsENxwoTMG5XxzaBlh8xDvCWmn4DXO1
-nXntQVZUAsV2ilPr9/wZsMorYyxjrA/zJ2AEnSl9EQKBgQC6+uae62uC0e5W6U3d
-Gqv0XVvFKGzLQoua+C5sW8xukYvh2AH9En53hkBcXv+ecUMkOE6RYgVul+NJd6MY
-rkSo2ZrF+eiz5kg8i8pff4pST8rgNqWhNpkt7KVj+YCqG03xzN5iYyml/BwxxvVX
-Mn3TqCImE5vkghCtyS0ypt3KEQKBgQC5pXxMxd6ca+6Ayyhbl+GMGwc9Zf8f1DpK
-iHcqrXPpsk9tgE7WTBboPAzmRkfvjJXogb+wWFUzEf4NDH5xaikf0WrUrIDU3dh9
-kByMoxqnpluXwvM5G1Aq82e7mnaJl9w/sW7Au6V+rZ51nvPEwVoniJ6LtACDb9Vh
-TOmW0bSbiwKBgQCsZHgNPfE6BGRDLYfku5qfCxR5ivQD067ziq8CqQCrUPYvnAD5
-W/vOJ7FfeRck9jh5RJDr6fwoI1IjgnKVZtdW9oqEzg2HEGK5sAk+U1Es4vSiFMBR
-Cw3gEbfLnVbLf7E1pzXCcLsNloxIOLArXRo182bIxHuPC3xlPn61nLQQgQKBgQCt
-8RT25gq/Kw2sFS36K+ODn6t35sJVM0duoFBvZ1eM5qovIiI7/c0UyXcYp08tbt7i
-m/dcJlel4zzTQxqR73Mawd/D5uFLEZWPiGCHkScfX+q/1kSIBERoCenuyDo6j1Qp
-RXlNEkRs3gXzlPw4JSXwlrxej0hP3o/ie+r9if0cIwKBgFVKNyt90Or8WscUEoZj
-kcL2Z4+CjqlofOfb5P+TVQttAr7VQy4JRnDUGCV+4yj0xoGDgzrxJVmN79lI8run
-++6fD8LwMVSOYmSIYHgK0ZXFtMYHicsrmem4BtPLr8qVQa+w3EEwpFGK5E96YLzH
-mXbDlKkgoQKcWqjJE8hn7cpO
+MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCxJOsPhDAaZcRM
+oaKcwFAxnYzwtUhztMkMdajQcqwmixN5s9FTsvvwbYVFulX7A9ZRoLbtvEaLBQzu
+SEY9hGt0plPuW5GXgea4rpUw/+/Dhnks+nRvjDbjpeFwr9bxP0mtJICad+cKOAZ9
+5vTqslr7EBBUzuMFdwXJ32t2JtedGMqxTJstyJ3i1PWFlKiJBy8qWqpN/qX1gZX9
+w1ukB6pelIcG/hQk63uFUQnstzcKc5uSZnnkJcGWI1pwsoFzW29sDnt0aClxHp0a
+uCmExCrBGYOTLhaOOY+a27dfp68Pk83nglC54bwnzhCsw25ra1/pn54PeqlEl32V
+ZGnHDQpLAgMBAAECggEAFSWKmAoYMfaHFfzPrDW6/QlJS2zgrstcmsuq8ONXkKxW
+kVc5fGvn7n4shDPn0rTVD16Hp96rbyoVrpZbKDnYGA9JArHUsgj0UYSp07Uh2q4B
+ZjCp2K0c2lUxkeGz343GDlDGt2nr30jr4XjCMQhEmycCRBWEfWEFhGFS80JUx/B8
+S++xO6qkRBMvkBPLeM+7EXjv4fLiM6la3LC1pCDLkbLSywbJu3m8HM+AXQAcyJ6J
+VYsPw8hhdRL/MPrvAUqUwvOvVLzKwK160E5uiihUQCY6Zt5Is77jpfUzK9WzPPEC
+BY/bM3zQ1X8HjwQ5JgGz0oaLQa/mhCzJ4EgPDH5wBQKBgQDgeKMJJ8QKQMrmK9qI
+evPIDXlOAqzzsRiusmRTn6Xd5vXnM3YEShVxcdl+TUOVTzhxBZ9bR4e+wEg7hQz5
+JxFrIzfGJZaUcHVRspXRcIq5YCKN2y770UTIoMgBDVFkv5Dg0LktJy+EQGoBlq3F
++ieCBKhdIg2eX7xUX4lkYoWt7wKBgQDKBohihBEchJ+1jYwAhiA71NfC6fZyQvwJ
+cDKI9pNRH0Ygzf+zgULJrYSg5F1nfsAiHxS51VX/pX6TEVaTK7H9Kpr7QOhn6aqi
+7bag5hML9TZKnNTK7ajmCPQ+7z4wLfCaYc4Bg73fi2GaXZsCw4hswDk2OEWwEmDx
+YmzJVHJFZQKBgQCfwBs/m8ZgCaac0p7vPJmcSUKIa00NDX9kbN8LyHWyC/n7ddtK
+yDKkjwLbaT9s1nlzri2wN6L69Tsy6MjH1K8H0YOTCBM3RyWnY/JNoMuJjEprLI8u
+dct/ATX10bWYfuErrj/rS5T8iR8oTEUVvac6V/g+d8q7aKTOY0OTZq5+jwKBgCcu
+GSkx/7eOKQMmzm4TlRDFeIq+oSMLxqF19vcFCxEChbE7Akon2XIPitdBMrQtqslz
+Sau4qhMIX4HaLPYh1UUKDECKGAh/Eq7Cd1bBCBSbm8ngnIw2hzkFp4jFEUR6xFzM
+dw1oJVzDRUyQts1UapLcvLu9Mhaxmcd2lS5+iCLZAoGBAKVB5EDSUWMt5B/ynR1m
+n7bu580G33uqYCIkRVi3DHPmVvIxm40eynEvZOIholaTeTn267HiKs95BMZGaeKH
+ByMq04pLBtJmFnbjZCFHkJy909SMcJ3v0JpSyqFUovWyf0jqNVAMXOh6f9xAGLbw
+XY+XtEW1BlRYncAXkIfrBTeh
 -----END PRIVATE KEY-----`
   },
   speak: {
-    appId: '1176390124241',
-    keyId: '8NBR1mNrdT6vdFa5PWkUy04tpbCfn7dSwUK7ngZE_s4',
+    appId: '1167176654593', // coze_oauth_python_jwt-tong
+    keyId: 'QOQFT-rym5tdlQZNpWZfFjqjgSh4pM6i71pMqTOfAUE',
     privateKey: `-----BEGIN PRIVATE KEY-----
-MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC1WX4CDpaYflO6
-C6phxGRz+nIm2g/SWwJgfsKq1HurtpDqwST/VBl3tX9TPWDh2YiYOkDururZ+aQi
-8B+HO7Lxt6QE09szScXHbp0tLPlQeGUXtz1l6eZfG6OVNr9EWzeYhCfOjSTbPU+8
-dnb5T0xcnpWP6yyOPi5geNasu2ZNdAMbWbj+C1nORY5E8E6r8OrFAQZrs+RKPm3J
-cyYtY+vmrYqjlfpqoXdQPahSpe79XZh5mfE6zVLZ/smFcMadcPEscGaTTlDv7X8F
-lYJ+FWN2Q1nKjVRKpXkjIs0AKrNLEnPlExzWbuqNw9i3/EQ86xqqqCdULzr1P0VS
-p9H/D62nAgMBAAECggEAL2tBpCcNYL1zhivDtwHD5IGhtKADUBVFB1dN7p5V4h4A
-QaoUUwE6EY+vReRAP34Clg9xaBfrx+hbb1lLXTCSh1rl8+8zm3MYWKAHUEc4v75j
-bLKYxtvExayz9vHUTHrvjB1OTVehwgQDo/tz+5etF3DOGc48HcuLk+U0+QCdbPXO
-DDwEBrVxd+buLT2Fn2SBEf1JcImoHCPT3k4fhrdeul6BRa1xZmRFR0wYbp5vyXsK
-3psug1YR0DTIyLtcpjqs2ZdJv1Qx3l3+PL4Q8I9P32AGuiS1xvTvqmoPuCuBixPm
-b+Gu1OUwwoTKRw7LNSgumC44ZbPXL7r92SeS61QBCQKBgQDu4PxETEX+Vml1nBb0
-+RS8dm5VNRnVBJrwCS6BRRlXXMbFOASkV2Fn/HLmzlUY1/dij2kM+mY46GPEY8XA
-KpkPEebo3JjsxWBKmBmv+9Pnzy6ypapQlJB+6aVbh530c0ClIh7kJlBqOS1YnmoT
-na88nB609oWnIsxMOGGoJsT1eQKBgQDCWPGpFtNM0qy3bWd+7XiKBjQq5ocq0JvC
-ngVZxlRQURXfD16HKMofVVM76lICt6sWqRRCbQvcJR7sR8wfwPJDmw/FhAHDaHfC
-K/E7TZmX78ZVlxpVlrbvdp3SPdBx/R9uCRzUX0yszstqu2rxCRHoZ20L+dos3L8u
-uyMUEqyUHwKBgQCW6Hc1xmGpbXmuHO+7zuc0sDS/i45ILmKbJZHFhJufvzKrQNpd
-3/3fLXKBMPQ9f6H/F84rrryJUvZECSvSXJbZGFwh28qYOZC9Tx1bOeIC3bYIkfPo
-eBJYus4F5sT4ux6ps8aEJ1hB4uEszNcCkWk1BwO3Gs4QakFaHXxEOEnRMQKBgBqU
-VYCdmYphKbPwZ34pdhnSXWIcoxHM8/B68hpkEHXnkQkvreroPjRo0/hWxJ6QhfqU
-Zyvqg/u4q/D+pMEW/0sVsuN9eUxDRlWs8tH8e+wWo9Zi0vwvn5dCbrUpNQ/R4XGI
-F4RIAFGF+rX/KdILPoK9WmGP6zHFgvQeLd756tZbAoGBANtwcUr0CfQmdsjzHsYo
-Mj1las4RMhvxhZVoMXxw79H50L+glnqtKRlcp6qVpWYXxrLEiT7tjNcBVNA+s+fZ
-w1F87lzQ77u5hffSA5wTZsFt0aEBTJAivVxuSGk9LWYzo0+CZzI5PPkFAlF2/MvP
-xf4mdh+dGT7b2sMlm1f8i4vU
+MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDsiaNrK/GIlr98
+fI16qCfNqcr5XhIi9MjXx3XiJmhuYCM1/AEnfRyKaSxLVVf0R7cIQ7pcd41ucQXB
+QWU63Iy13KXgEHfuN9hJlkixaWVJ/CMVbp6Kg9woZEe0snKMISwDP8QpB+nvPOGV
+oPBMPztUaM3R/ZWPaSrm/5DHl4QLQdUrvNDUwm4JTkNERPt3BkpFmtmAkj10+vnn
+o2s9eOc8pcdNhLkqMOKytoZYVC34OkGeyfEhXsq/MwrQvWyjY8Ku2bJ/6AkDP5pL
++C+2RTCratKTZ81pzwaPkS7l4OeM5n6KGtVGbumJzmZ1p2Ox6O8eDFbL5uaFsvtE
+2YzLQcFNAgMBAAECgf9nuuNnC1XPw8OtOmlZgw9o/5WdPYGljoBjU534W/CjZcnp
+Fe/0Lhzelg2jhFJBNKl2KZLDxv9QGkCN9w6x9LEVupydP/Dx3Fh0/ftrjbvMlBtX
+KKMrCmQsp811CmZChRZhq7dJelEcu3QQCB2dlqXDb6oGSshc6LDWvrQ2sSpqKvIJ
+/V7TQlsLonZnddLw2NF+47RBGh0i4A+uQxN1phUCGKrqeGWeFDGPyTFg6zcslFzm
+vMryz66hzQxWD/1wqEk6N7MdGMT0FuMnU0vP1vUlXLEd5uKKTvk1GGMRK8j/ZdRG
+Z0juTBdMFoemaYCfkkJDFciodwvRK1yDLWqiA1ECgYEA/jovw1wgi6XGpWK19+Y0
+qhhncng58lOVeNTvoAGxhQDsK6gzo/mwNvdh7PEkqamfhCc0AWelxIA66VVVgoCM
+uaEaz0/ld2p48lHVzPzVD53aU6VAd6Es7zPZqieHHiyeFuEFh2L9zh9LeItgDayX
+YlcpqY7uD6t30Y6gse5qaLsCgYEA7i/f4afXvh8ktc/L6M7VNxw7nKvnQ5gl90rR
+/gjfO1aufV20jMe9murOn0LAGa6KKV5GEF2XDeZ06FBvrxIpcjWkc05sCFxxR82Q
+VX1ihFqrUSUL971mFqNQKI3M5eAEixEkSyZe941fJKGYA7Kaor5ZJZ1kiPvKt9Cp
+NPyLwZcCgYAElcwSu/CiVCUXCoa5p98/Sh1jhSOWaUeC3GROAHnRKkkYKHp19KTm
++OM9QMQmgzarTYG0nMfymVV2q+FU7ziaiHtRTeGXm8X+qNcwUUcOdwxfAdX90lxb
+HBZK6VeYhbl8NCbDYFevhgT4cZsT5A7+6Q+JTVih07ffgbEIRIKKzQKBgQCzxmyr
+jBx5QlZZ58oXIK2rV+LigJkf2qGlQdK3c4jR573xn51buJKyb9GeQSpu998OFDq7
+tXgCpNPOWI/DSuj/a9+ArEs8EFHsCQqMjAOktC6kI1siFNEN+xvQUB67zlZ/hGOp
+WP/Kxuht5I2xFMhEV3k/u8ka3zkFfjeIZ6kwZwKBgQDLrstcNQWLGfSv/OA2MCvE
+Q40opdqtDWG3TezHbpPbvnhHHelfAFcLBO0M99MAh11TNIVE4AKiO9awLWH6N3Lg
+zjgg59BL3YETBKrpEDKkDvSGuuD/7N6rb4IrduO3MJlyGSKD42Nt6GysR9+YfXma
+HfqK1PgBOGQRYE3YVDMJFQ==
 -----END PRIVATE KEY-----`
   },
   camera: {
-    appId: '1151850049216',
-    keyId: 'ALzMm0viiUc3dWRXYud_1jYfkqGmJgoJHpigiiks6wk',
+    appId: '1132068289043', // coze_oauth_python_jwt-chaung
+    keyId: 'Bf27NqUCvTc3yVVOrH5mPWqiq99hgUsvxDRZpz4SioA',
     privateKey: `-----BEGIN PRIVATE KEY-----
-MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDbL+sL8vXxCW2A
-KhRlr9j08yf6cilaOkToZUJk1h9QkIrodehSKn0fxHrAMXGZwPQIq/LcGnLthh5p
-sNWeHhkw5KytnSysltED4Xbpr3CcdAk4x2hUO+aJLpPMj+SZEp14cMLHfw3axDAd
-d/OYHE96V9kF5s1/ZYh1e63xfHbD3oRXZBIRU2eCpDKaRizv668bsMV3eKLJyDiP
-ANQXT4+T6vBPJB9VGfgedizLxxzK0e86ulzpqx9RZFswywIC4HH1iCBPNAzYKNTt
-Fwtf7B7n94MGEGqq6Bc/YvGe2exMhC4sPF33cN3pFlleDRom569HzNp7U5nDyru3
-amrJVYJxAgMBAAECggEAMfwkBJYUKzNEsvklrKjk97tp7w3Qy2BFbaAF+5vvCT7l
-Rqz43aAN58w1WBYOe4tKu52G5VXsxqkSz3SByqy/fuxvSqpw0S0VnmZw6UrWif9W
-SQoEi00bvkYOc5SPA6+AlMJWUQty++RIurerqBEwuMxG1Dc1vutHKs+ZM9x38yOk
-C9efBjaOJk3leZxjmUGfQM7rmAeeVF4GfZBEVi6u5Lsa1tntDADmG+R8JZcQIv8h
-N/U6zZRiaMa4WBHYZJi/J5O38/Dzn0KDwh7ToIMq9a5F3JdUXA2K6cZc/dXytb22
-oAUkdSLlylib5C286V/M+SyROGSNQzwuy5KWBmcq9wKBgQDvJh/fdi5hht9XHKoG
-W+ue7I4d9LbEmhs0ez0y5GWw0NcYKi71u6E1QXlXvF3SING2gAvV9aFPFete4988
-aQpfIMWN1Inn7N1OqxAKys/4kYAOozEQxP4AdvXe1JqW/zCuCAZp0Ft/E4nwd2hF
-137JGmthxdWgsaUG7yMCiOCHFwKBgQDqobb7EYM1gF8fwf2pdSOFFw7HJhG1SFxv
-eVEosHoEYxq0B2FMiy23sLDQQ0hXH9N1yKAkmjYOu6D6vs7MigPqLb0BOSyFD127
-bqnvzIRUBewrlQf7VNn2dIqFoJl5KH3lmbpB+0vBhtfIDA0ZmDz7tW9W1CO8Ny5Q
-HIVaLAk3twKBgFEciSrtloWVjSKqojBN9PiOGxWl7md4LUn7kqI0PRlfe9TCWfMW
-lHLPpixPwzKF1xsjCuCi0vdT4+TnPMvshIwHPXoBYFS9TcJk2qgOacNQ9jIAv5+E
-cPIPZw0Q5u3X19bu+d3hwWa0ZdCdb0xg7quevlUHGJHMLsDPUvyFGEI5AoGBAL7R
-ZBIOLQpu623Vg+m0BX4wwWj/Mfmf7uUN4g5Yb/NvcgEl22C39CdnAHVvsr6AeKZa
-0rrR29Lhj0s9sMuyFvr11bfP+sAAPje4CWanipsW8fqDyqkBWf5Qy3NfqFFbt//p
-pQwSRosOkiD0hBbjs/z1kqYoAyQIMJcgiudJ1vlDAoGAZ1/FY4SIZIm+v6+10B/r
-VSl6GR0umSe5qzbrdV+Lc2zjc1NGcTuwgUl4NoL/KFeRx6V+OC2D1OgqrRHM0Lbq
-XuF6JCQv8qPezqzX6ZmJ/dD5ZCC/fagz7GYDg8+zXNO2jOU75sgAIK3X0wY/5Oio
-gPfHy9E5rUhM6ibdzwUHfck=
+MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDRfEpsfYtUvslL
+/cRbpmkrZRIk2J/e0Iu2Wso9kXwOqztn516sMZreqtvUbgE9N4XFEA8/1cUbiT93
+vZnjMjBoK40Oni86ub58dOECsbfX8S8nLYWaR63JYfgPZozVA+U0zc/rj4D/l7AU
+szDrnyuNBDZPfvWBI4G+Tzqk6eyQ2jBkTYxNAXlZGBvcneU/yX/hpunUu8wMtSgD
+WNh+dR5lEF6cQkL5PPvvzc8E7fkk9FfIJFXna1mcIbzLL0fzUIhCrL1+uqySw25X
+ZswO63R8S2jYCKGBCS/EtVdnBOl+0msvfnUK10vCCFEI/sQ/iSFZhtEcHfbbYtyj
+RRzTmhnDAgMBAAECggEADQFZtXvjJzMOWDNm+gb4xy2Sf3XGEb/XYfjSTsQ2HssD
++HgQE+yjIBPHa1wbo5X2LhJzKpQLlUwOA/xiDg19nS9Rpd4C3J3PdPaPSZWIQ6sW
+MakifujYTIT9MNI9srPNNQavU9Z9kbX0bonkDZy8yBfCL2lDC0NjDfzpN80grKq3
+obQyEg4Kz7XO4PZ2aNOJWo5/G7or58VoT4cWmeadFG6PAiPIS0cb2RghPunp1ipl
+GY1G8ECHoXoZz1SpTRx9N+GDDdfjK5RichKIVnnNyiexo2Cl8y+FFD49uW4d6XiO
+17QBeRzvOwHG+kSE37d3L0nMUL5qw+stIUJ5iIJ8cQKBgQDtc2Ie2OuuPHk8neWj
+jEGJ97cj/VCP7xPYiWp+JlrA91XHI21jwBMSB7VFq0X1xDMrTlEGDarvQ97ZJ/wk
+f+ozIyA6g/eCHJlJC7E3pwfxFdDuvmmoNLcPadPT3n3fom9LljqkgGRBCf8OMhcH
+iUGcXa8I0mIe9fLBx3leRBeihQKBgQDh2aZwiq/vPk6B3YdtqgM687g29RQXyyoX
+1pZByP0bwiXtH/sZlpMLfjlb+3SKGvucDqDRvzDhrrApuVwfWrTV9blgqnWVtejV
+URnOZX0lnD6XGgW+SixGHzEWqSFGiqVLoEztSaiAjO+BwauDkOI0Ja+J4R1maNw4
+HB/3FadRpwKBgG8x00ciyetEAnoybvFRovda+3ZtD6b3jFGguC/vAhzPNmoU2wsV
+TVjqJydC93YJtPSYrjSpfdyh6d/Da74j8KaV0mfUmLljbxzXztuC6qMpVjgXDx9n
+4Dnlkv7qeAOb64Z4CWozfb8/USNyrXon+oOhE3CMJMre3hmEsf9E39SJAoGATl5s
+775gID9ZlJyfQsFsz4cElCVkrID2AUGX8AnjMj+jU232fsGOEr3g/3b40HdeeZ9l
+1IJoXtd0D3Zfbg3WlCvpAI8FsEZoHaU/tCvpSiS2X05LUeWBCXAHY5qajlTL2Lsu
+FmSp0LmW3kqqzkN3CqtNByYTQpb+W4X+3Yko/x8CgYBquoTj9r39gGwAjqB8LHgT
+gRcNN+aWOe5phiPzqumyfmO3eaBXwEqUGhxOKJ4cYsUGXs0/JydfKzkqphsec09n
+MHuP5oEI0bxxlEqTe3w7UZ5Vz8RwzUun+pF/nbHCCa742yblNCpX9wNIaDD0EV3M
+fQSgV702A49xUFCG6uVOog==
 -----END PRIVATE KEY-----`
   },
   voice: {
-    appId: '1169359718851',
-    keyId: 'ZYd26nd8M9yrNuVEG257ZVUrnRvoaqWQ-oswkVdyq9o',
+    appId: '1155710162102', // coze_oauth_python_jwt-AI
+    keyId: 'kZvHCZ0i3HKgzIw4-LDsSBsOcHZfixntMXrNYvFQ2Ng',
     privateKey: `-----BEGIN PRIVATE KEY-----
-MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDIohs+/0RFiHth
-TesJH3HquuvJ3AtvNltiltduanN2BElHrIkbmg1azfUm6MPQwHK6yjyV6rKG7cPR
-ZgZiE3rp31jQfQKTcSACQ5LQ44wGgdItTuYLBow4iuYSA5xjkA3/ILryijkFb2yW
-ZY4xkg161IgmQLY3wKtTqxHecCNwfu6Yi29JxSyEQM3BVq94Uz/huC1HkIt6RDZe
-6hY/ySQo7Uhb/uLmAutL6SvLR8Dn9EiIT796Mhct7oxchfL9p5eYKPcGfA1ArPbz
-DMSunABAZQtcrpxTI5zbt+EHVT+r34N9XdIVv/aw+5/KDYKQ64dGL3CaG0SXpqLe
-FKV0cd35AgMBAAECggEABQz+VkPTLP7xFYjXybcsGnvR02yXMG8JYOjUNo2L0jpB
-uqyvbO2gDXD8OBpe/O0uAOF2If4HuC7ZzEvfDZlY8Z9I8JgHuGd+JfXGhzywjzoL
-F6SR/6VkDUkDNAvkOXtsZsek/SsZTAzl3763FCy4QHyDiuxRH1kvLErfsckCk2KL
-KsohqsID4h2g8ZU42D0Mw42pzkpzdTCGm1G81druifaZ9OogqYFtpfswSTkjFL7s
-OWkGLIpb63EDtr9i2x7jkyC0c96mKlnQGBsrkvtLGw0JhV9NSRkFa2C7T/mVT+k9
-yGav2NcvVuAjMtZigJfHZnLPRJxlWzxql2w/0QH9KwKBgQD9YkBDSLY3Pk0J0m0U
-Lw42Bi9ckxP6ksHVVCR9Zho2J9aSbehCccidAnwOoUBJjgudUlnIIDy6ShthQM1s
-rB9zfEm4hNiYP8q3AxHvsP7l5jrXPRMQIo23bzNCbr8H0SRPazQPnOcTAWzD7Lwk
-WokCUqyrdqyQVBS3vS2lVm1YpwKBgQDKtGyQwCuXJN+2thHbm/A9QOvv7TZJ14D2
-Y3/7B+hVBpNL5YqGVuMalBZBpGPzS9b8AE/fXjhtV762xRH9BTQJNewwKu+c4aWW
-geY+jvLEfceIL7iDdtrDC07m8xDBdnWHc4JmMe5M59Xp9nfFWbGGwIgdmJWG4gfs
-jMtKtnlIXwKBgQCd+NJt4HhSKtJm7D07Vzb58ZM3mS7ciwCz2rjBQZXX67B4LHOg
-cUYMtY7YpCnrcdbF56C4B3k0/5zgXkF0nj8hhfyEQLa0/RiKTyywjl3swUQwCxDG
-f3RxR6/inB8XZYnIxeJ4VW8vRzUjVYXa+GLxAtBKOjvN483i29wId8DGgwKBgGG0
-R6QZzKkEsARcjA0Dg++ybEbwWruK8XFRkm2IaTcafUMW+Ac6uCqmeHfZagfqZUyA
-Rf+PZblmktl78ei4alWKNTceavJ+XRdHs5gxxNhrHBMLlW9giZ97wuNVA52MoKfS
-SGdD5+4PzS8BiseILSabhMBnPKOQLWuajZ6Mh7cXAoGAPGHPkD03ISUMTqPRmY/H
-qJf3iI7nvlpeH4Ge1UszsmDz9MDSUMJCPs5bq24pT5kl+rCZasT4BuH9dODuBeD7
-cZgzaGbDeYXn8WwsD5b7PbCGS7dljhU0N4LlTcoGtSROP3O539RzixKeAN57sUF5
-ndccSY2yLtBzT7qQGPIxJC8=
+MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCtW5qFPRFsJ8ou
+cL5/q2IRZPa0FoUZ6tjDPxPWHxXpwrszd3M5z9Q5JU7j6oiV/kpWaaQLmFtMzjWK
+JDmxNQkakpMIoq5PzD7Aes85xLgSUMF6BPnLqJcUhKiTZH80btAwb7hntZQ34HBn
+Q+IfTaKc+TD4A+0d7ptJa+7awOKaO4uYIruKmK+9HU7qE1mcC4FovxI27ld1UCp0
+rknj66UnOlVcKaIz+79c9crTqAUow/46L/6nlIKX5Tc8KR4KMEt5lZJ00kLBOiOR
+CN69m3aAi7Ou1J0xSwNK35uwzp+sDX1D+JCqGg2PZdfozrfVBxJgy+DvrUsw0QX0
+UZhCTGunAgMBAAECggEABqQILstwk+qQSagi/AQGLTFna+2i6qO+6vfLHDwznDFL
+94Q/YzsNX6UIuR1eXxSPJ3FDifgroy0RCvopRZsI/r4XqNCGieMCkmAB+S4KeRUj
+3Dc9lGogY3ZTeNX0M399NSXKdBqWE2/jDmmgy18veADpuc54sllWFIFwdGvIIm1O
+Vu4W+kvSbinjZ/YhYJcQtFQM9/JEB8dYKR/5R7EvYYMQ1o3fd4JomJIOHlvyrK9l
+haedm5BVXkufgrQU872haW1yjnrnWUOHTTHUICv/mwJ7D5YFmM/iwKk3paP1DQ0h
+X/CUkk50WT7Wbb+wic/Se+oY/ojXMVpcMDZNypUAPQKBgQDghhtxI3l8JFcvUoJz
+MHkfDKcX2ndMQp4oh+lruLcJqFHCxmRYaCLd6MzCoZWQBSnv06PW+TNbkAZ4ze64
+ZV+9BkbY0CnK88Mw54y0gQ5SWsERqlD4s0JGBP3nAh08Zb/e+01bveOeLwRwRwwr
+FNSdmGx/UQ2QSWzplLVXWDT9IwKBgQDFqTVxNvXuTvcDARpf2JXfSTPwXkbQQPvx
+dab/9JprMSkVwmmqHt1oXU2e3hdzZFi45F3VRQx4zIX/TWJAi1A1oIvb3LISHqWK
+1QN/8Zbm9rkJGq9EjcpghmHAOD38vb6cScuH1lZJENLUoX4zEQYeip7RKcf8WZgP
+q66brk5prQKBgDM1At876wIwO540YEIrRQSa2yUqk1jWPMIbtVX3K+/M7tDQdKRh
+I8qexMyDE9xkARuMlmp6LYdtgrxco1x06m/vFYtvdoiuLc9ikAm/AWgxAKWpxYvj
+PnM/wjTEm6xhvG/7urn4xggWyxlcat8Mgi1rTRuAfepxhKCFZRKFsJgnAoGBAKZg
++SA0UCzpgRihTA8To4wQ9UxGPzs7CBfGnezjezvxZJDxVboiQuJ/bz/j2D+EXv47
+FBTaC1Z/aedtvt9vpPOPEUrfaXDBJT1Icqq2s/vz/+r+8Ds3UvuPAicn8F2XZiPu
+JglQTM8x/xWGXlEj6k+5BVgw4Cq1S78dF1vqDAz9AoGAXQkChYnST2zfi0xaEzFV
+Me7UuchBR7B2dKw9BXnpD/xVbwSlEd2w4tjP/PtA9sz5QIEKlG/6s90i8q3IHN/Y
+QhraFBLHuZWb1psApgBOtzZfOP4HGMHzRrtgklEJ+QYw1sO5dNHmxqsVk4RQqQ7u
++8FAyUL2BB+y7oWcOvmW4u4=
 -----END PRIVATE KEY-----`
   }
 };
@@ -185,6 +190,19 @@ export const getProductionOAuthToken = async (
     const jwt = await generateProductionJWT(moduleType, sessionName, durationSeconds);
     
     // 调用Coze API获取访问令牌
+    console.log(`正在调用Coze OAuth API (${moduleType}):`, {
+      url: `${PRODUCTION_CONFIG.baseURL}/api/permission/oauth2/token`,
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${jwt.substring(0, 50)}...`
+      },
+      body: {
+        grant_type: 'urn:ietf:params:oauth:grant-type:jwt-bearer',
+        duration_seconds: durationSeconds
+      }
+    });
+
     const response = await fetch(`${PRODUCTION_CONFIG.baseURL}/api/permission/oauth2/token`, {
       method: 'POST',
       headers: {
@@ -199,7 +217,37 @@ export const getProductionOAuthToken = async (
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
-      throw new Error(`API请求失败: ${response.status} - ${errorData.error_message || response.statusText}`);
+      const errorMessage = errorData.error_message || response.statusText;
+      
+      // 提供详细的错误诊断信息
+      if (response.status === 401) {
+        console.error(`JWT认证失败 (${moduleType}):`, {
+          status: response.status,
+          error: errorMessage,
+          errorData: errorData,
+          config: {
+            appId: config.appId,
+            keyId: config.keyId,
+            baseURL: PRODUCTION_CONFIG.baseURL,
+            aud: PRODUCTION_CONFIG.aud
+          },
+          jwtInfo: {
+            header: JSON.parse(atob(jwt.split('.')[0].replace(/-/g, '+').replace(/_/g, '/'))),
+            payload: JSON.parse(atob(jwt.split('.')[1].replace(/-/g, '+').replace(/_/g, '/'))),
+            jwtLength: jwt.length
+          }
+        });
+        
+        if (errorMessage.includes('kid') || errorMessage.includes('key')) {
+          throw new Error(`JWT配置错误: keyId "${config.keyId}" 在Coze平台未注册。请检查：1) keyId是否正确 2) 是否在Coze平台注册了对应的公钥 3) appId和keyId是否匹配`);
+        }
+        
+        if (errorMessage.includes('verify jwt token')) {
+          throw new Error(`JWT令牌验证失败: ${errorMessage}。可能原因：1) 私钥与公钥不匹配 2) JWT签名错误 3) JWT格式不正确 4) 时间戳问题`);
+        }
+      }
+      
+      throw new Error(`API请求失败: ${response.status} - ${errorMessage}`);
     }
 
     const data = await response.json();
@@ -274,12 +322,16 @@ export const generateProductionJWT = async (
     });
 
     // 将Header和Payload编码为Base64URL
-    const encodedHeader = btoa(JSON.stringify(header))
+    // 使用UTF-8编码确保中文字符正确处理
+    const headerJson = JSON.stringify(header);
+    const payloadJson = JSON.stringify(payload);
+    
+    const encodedHeader = btoa(unescape(encodeURIComponent(headerJson)))
       .replace(/\+/g, '-')
       .replace(/\//g, '_')
       .replace(/=/g, '');
     
-    const encodedPayload = btoa(JSON.stringify(payload))
+    const encodedPayload = btoa(unescape(encodeURIComponent(payloadJson)))
       .replace(/\+/g, '-')
       .replace(/\//g, '_')
       .replace(/=/g, '');
@@ -289,6 +341,13 @@ export const generateProductionJWT = async (
     const dataBuffer = new TextEncoder().encode(data);
 
     // 导入私钥
+    console.log(`导入私钥 (${moduleType}):`, {
+      keyId: config.keyId,
+      privateKeyLength: config.privateKey.length,
+      privateKeyStart: config.privateKey.substring(0, 50) + '...',
+      privateKeyEnd: '...' + config.privateKey.substring(config.privateKey.length - 50)
+    });
+    
     const privateKey = await importPrivateKey(config.privateKey);
 
     // 使用私钥签名
@@ -332,10 +391,26 @@ async function importPrivateKey(pemPrivateKey: string): Promise<CryptoKey> {
     // 移除PEM格式的头部和尾部
     const pemHeader = '-----BEGIN PRIVATE KEY-----';
     const pemFooter = '-----END PRIVATE KEY-----';
+    
+    // 检查私钥格式
+    if (!pemPrivateKey.includes(pemHeader) || !pemPrivateKey.includes(pemFooter)) {
+      throw new Error('私钥格式错误：缺少PEM头部或尾部');
+    }
+    
     const pemContents = pemPrivateKey
       .replace(pemHeader, '')
       .replace(pemFooter, '')
       .replace(/\s/g, '');
+
+    if (!pemContents || pemContents.length === 0) {
+      throw new Error('私钥内容为空');
+    }
+
+    console.log('私钥处理:', {
+      hasHeader: pemPrivateKey.includes(pemHeader),
+      hasFooter: pemPrivateKey.includes(pemFooter),
+      pemContentsLength: pemContents.length
+    });
 
     // 将Base64字符串转换为ArrayBuffer
     const binaryDerString = atob(pemContents);
@@ -343,6 +418,11 @@ async function importPrivateKey(pemPrivateKey: string): Promise<CryptoKey> {
     for (let i = 0; i < binaryDerString.length; i++) {
       binaryDer[i] = binaryDerString.charCodeAt(i);
     }
+
+    console.log('私钥转换:', {
+      binaryDerLength: binaryDer.length,
+      firstBytes: Array.from(binaryDer.slice(0, 10))
+    });
 
     // 导入私钥
     const cryptoKey = await crypto.subtle.importKey(
@@ -356,10 +436,12 @@ async function importPrivateKey(pemPrivateKey: string): Promise<CryptoKey> {
       ['sign']
     );
 
+    console.log('私钥导入成功');
     return cryptoKey;
   } catch (error) {
     console.error('导入私钥失败:', error);
-    throw new Error('私钥格式不正确或导入失败');
+    const errorMessage = error instanceof Error ? error.message : '未知错误';
+    throw new Error(`私钥格式不正确或导入失败: ${errorMessage}`);
   }
 }
 

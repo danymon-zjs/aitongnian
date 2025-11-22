@@ -144,13 +144,13 @@ export default defineConfig({
     }
   },
   
-  // 实验性功能
-  experimental: {
-    renderBuiltUrl(filename: string) {
-      // 自定义资源URL（用于CDN）
-      return `https://cdn.example.com/${filename}`;
-    }
-  },
+  // 实验性功能 - 已注释，使用相对路径
+  // experimental: {
+  //   renderBuiltUrl(filename: string) {
+  //     // 自定义资源URL（用于CDN）
+  //     return `https://cdn.example.com/${filename}`;
+  //   }
+  // },
   
   // 禁用有问题的命令行标志
   esbuild: {
